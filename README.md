@@ -189,7 +189,7 @@ Result:
             "amount": 420
             "created_at": 1531698603982
             "fee": 100
-            "name": "Erwin Bey"
+            "name": "Erwin Beij"
             "txid": "b7382a7ca5fda64966e01c0b22e161558f"
             "type": "sent via email"
         },{
