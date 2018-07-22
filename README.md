@@ -2,7 +2,7 @@
 
 ## Overview
 
-Please notice! This API is still under development and only people with an **MERCHANT/INTEGRATOR KEY** can use it at the moment.
+Please notice! This API is still under development and only people with a **MERCHANT/INTEGRATOR KEY** can use it at the moment.
 
 
 ## Structure
