@@ -22,7 +22,7 @@ class StellitePay
      *
      * @param string $version API version
     */
-    function __construct($access_token = '0',$version='1')
+    function __construct($access_token = '0', $version = '1')
     {
         $this->url = 'https://api.stellitepay.com';
         $this->access_token = $access_token;
@@ -85,6 +85,22 @@ class StellitePay
         return $r;
     }
 
+    /**
+     * Query send Password Reset E-Mail
+     *
+     * @param string $email 
+     * 
+    */
+    function sendresetemail($email){
+        curl_setopt_array($this->curl, array(
+            CURLOPT_URL => $this->url . $this->version . "/sendresetemail" ,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_POSTFIELDS => json_encode(array("email" => $email, "key" => $this->key)
+        )));
+        return json_decode(curl_exec($this->curl));
+    }
+    
     /**
      * Query logout
     */
