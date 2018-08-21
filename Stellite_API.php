@@ -102,6 +102,24 @@ class StellitePay
     }
     
     /**
+     * Query Send Password Reset Credentials
+     *
+     * @param string $email 
+     * @param string $token
+     * @param string $new_password
+     * 
+    */
+    function passwordreset($email, $token, $new_password){
+        curl_setopt_array($this->curl, array(
+            CURLOPT_URL => $this->url . $this->version . "/passwordresetl" ,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_POSTFIELDS => json_encode(array("email" => $email,"token" => $token, "new_password" => $new_password, "key" => $this->key)
+        )));
+        return json_decode(curl_exec($this->curl));
+    }
+    
+    /**
      * Query logout
     */
     function logout()
