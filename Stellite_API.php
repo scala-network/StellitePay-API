@@ -66,9 +66,9 @@ class StellitePay
     /**
      * Query create a new user
      *
-     * @param string $email user's email
+     * @param string $email method path
      * @param string $name user's name
-     * @param string $password user's password
+     * @param string $password request parameters
      * 
      * @return array created user
     */
@@ -86,7 +86,7 @@ class StellitePay
     }
 
     /**
-     * Query send Password Reset E-Mail
+     * Query Send Password Reset E-Mail
      *
      * @param string $email 
      * 
@@ -96,11 +96,11 @@ class StellitePay
             CURLOPT_URL => $this->url . $this->version . "/sendresetemail" ,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-            CURLOPT_POSTFIELDS => json_encode(array("email" => $email, "key" => $this->key)
-        )));
+            CURLOPT_POSTFIELDS => json_encode(array("email" => $email, "key" => $this->key, "ip" => $_SERVER['REMOTE_ADDR'], "http_request" => $_SERVER['HTTP_USER_AGENT']))
+        ));
         return json_decode(curl_exec($this->curl));
     }
-    
+
     /**
      * Query Send Password Reset Credentials
      *
@@ -111,16 +111,17 @@ class StellitePay
     */
     function passwordreset($email, $token, $new_password){
         curl_setopt_array($this->curl, array(
-            CURLOPT_URL => $this->url . $this->version . "/passwordresetl" ,
+            CURLOPT_URL => $this->url . $this->version . "/passwordreset" ,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-            CURLOPT_POSTFIELDS => json_encode(array("email" => $email,"token" => $token, "new_password" => $new_password, "key" => $this->key)
-        )));
+            CURLOPT_POSTFIELDS => json_encode(array("email" => $email,"token" => $token, "new_password" => $new_password, "key" => $this->key))
+        ));
         return json_decode(curl_exec($this->curl));
     }
     
     /**
      * Query logout
+     *
     */
     function logout()
     {   
@@ -153,6 +154,7 @@ class StellitePay
 
     /**
      * Query balance
+     *
      * 
      * @return array balance
     */
@@ -244,7 +246,7 @@ class StellitePay
     }
 
     /**
-     * Query add addressbook entry
+     * Query add addressbook
      * 
      * @return array $r 
     */
@@ -263,7 +265,7 @@ class StellitePay
     }
 
     /**
-     * Query delete addressbook entry
+     * Query add addressbook
      * 
      * @return array $r 
     */
@@ -282,7 +284,7 @@ class StellitePay
     }
 
     /**
-     * Query all transactions
+     * Query all transactoins
      * 
      * @return array $r of all recent transactions
     */
@@ -293,6 +295,25 @@ class StellitePay
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array('Content-Type: application/json',
                                         'Authorization: Bearer ' . $this->access_token)
+        ));
+            
+        $r = json_decode(curl_exec($this->curl));
+        return $r;
+    }
+
+    /**
+     * Query notifications
+     * 
+     * @return array $r of all notifications
+    */
+    function notifications($timestamp = '0')
+    {   
+        curl_setopt_array($this->curl, array(
+            CURLOPT_URL => $this->url . $this->version . "/notifications" ,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json',
+                                        'Authorization: Bearer ' . $this->access_token),
+            CURLOPT_POSTFIELDS => json_encode(array("timestamp" => (string) $timestamp))
         ));
             
         $r = json_decode(curl_exec($this->curl));
