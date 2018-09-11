@@ -37,11 +37,13 @@ Example Request (POST):
 ```
 curl -X POST https://api.stellitepay.com/v1/register 
 -H 'Content-Type:application/json' 
--d '{
-    "email":"YOUR_EMAIL",
-    "name":"YOUR_NAME",
-    "password":"YOUR_PASSWORD",
-    "key":"YOUR_MERCHANT_KEY"
+-d '{"user": {
+        "email":"YOUR_EMAIL",
+        "name":"YOUR_NAME",
+        "password":"YOUR_PASSWORD",
+        "key":"YOUR_MERCHANT_KEY",
+        "betakey":"BETA_KEY"
+    }
 }'
 ```
 Result:
@@ -231,7 +233,7 @@ Result:
 }
 ```
 
-### POST /addressbook
+### POST /v1/addressbook
 
 Example Request (POST): 
 ```
@@ -252,7 +254,7 @@ Result:
 }
 ```
 
-### DELETE /addressbook
+### DELETE /v1/addressbook
 
 Example Request (DELETE): 
 ```
@@ -266,6 +268,25 @@ Result:
 {
     "status":"success",
     "message":"entrie(s) deleted"
+}
+```
+
+### POST /v1/search
+
+Example Request (DELETE): 
+```
+curl -X DELETE https://api.stellitepay.com/v1/addressbook 
+-H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjE1OTc4MWUyMTUxYTQ1YWE5YmFiMzJmMDYxZjM0YTMyYTNjM2NjMzIyZjVlMjA2YzM4ZGFlMGE0ZTllYjY2MDBhMzRmOWQ3YmI1YmZkMDY2In0.eyJhdWQiOiIyIiwianRpIjoiMTU5NzgxZTIxNTFhNDVhYTliYWIzMmYwNjFmMzRhMzJhM2MzY2MzMjJmNWUyMDZjMzhkYWUwYTRlOWViNjYwMGEzNGY5ZDdiYjViZmQwNjYiLCJpYXQiOjE1Mjc0NTIyODYsIm5iZiI6MTUyNzQ1MjI4NiwiZXhwIjoxNTI3NDU4Mjg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.MZoX_45zrgP9Cv6K17peg0F-anMw0Fdjk6us4SxAuCMAtGdIs7UwaxwIuzHp3xJ6rC3bCOe3oZSqlTkS2L-Wn4gbDFi4E8az368_pE6jefxY75byW8iG1MEqHxFVfoiffYu2_1GX0LhLS5NgguS-W7QktDJcBK6PZLWlJdLmZIX5bLxjGTauWIdUY9arpkrqSBT0vXow0VqwHhxrTRJazpN4-o7nOfrcLaErfXYpsQ8iy-LTWotcwH0gM1HRwMW-Gj0AnXv1S6nkqCe5nCX5VqGB156KgEVf0YsqBtXgqkVEgUoY0WF7ltekOWGiOiXv-V6vkPCjHJCVvUopHk5QnoT6wMveiqUyJea9c9ibuYloLOQ9Y4eH2XM2HyiCHt1xE00usZuwiMJhALVvxYseFjlacjGzO2WmcFsE8ixqCpdPt8aWBSP_i6OpODuILjIDQXblLibn7zOu3ZWiToL9JUTDodTcsCYuHZ14X-1tW-4yhB0rXP5UiOT0NNjMrKMDfJVHcM5SdvcZ5_54TV-akaL1ya65Sa-GP_NSQZRsBDFC85IoO0z4sXedd9Z7vCO56RZMe2IX9YjKK7K_DQa7IoMJR5XhEI8SBeH_5zaBpvqXUTYT8JzogbVWXe6eHG8SpAks_4WjH__j_n8nEETslczF9TIw-2UUnMVT59kCrgU'
+-H 'Content-Type:application/json' 
+-d '{"string":"hay"}'
+```
+Result:
+```
+{
+    "status":"success",
+    "message":[
+        {"label":"hayzam@gmail.com"}
+    ]
 }
 ```
 

@@ -282,7 +282,22 @@ class StellitePay
         $r = json_decode(curl_exec($this->curl));
         return $r;
     }
-
+    /**
+     * Query search address from  addressbook
+     * 
+     * @return array $r 
+    */
+    function search($string)
+    {   
+        curl_setopt_array($this->curl, array(
+            CURLOPT_URL => $this->url . $this->version . "/search" ,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json',
+                                        'Authorization: Bearer ' . $this->access_token),
+            CURLOPT_POSTFIELDS => json_encode(array("string" => $string))
+        ));
+        return json_decode(curl_exec($this->curl));
+    }
     /**
      * Query all transactoins
      * 
