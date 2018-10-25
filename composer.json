@@ -1,0 +1,22 @@
+{
+    "name": "stellitecoin/stellitepay-api",
+    "description": "StellitePay API PHP Class",
+    "keywords": ["Stellite", "XTL","cryptonote", "JSONRPC", "JSON-RPC", "cryptocurrency","paymentgateway","Stellitepay"],
+    "homepage": "https://github.com/stelllitecoin/stellitepay-api",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PhilipJovanovic",
+            "email": "contact@philipjovanovic.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stellite\\": "src/"
+        }
+    }
+}

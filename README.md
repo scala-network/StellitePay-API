@@ -4,6 +4,29 @@
 
 Please notice! This API is still under development and only people with a **MERCHANT/INTEGRATOR KEY** can use it at the moment.
 
+## Installation
+
+Using composer 
+`composer require stellitecoin/stellitepay`
+
+Include composer autoload
+`require_once __DIR__ . '/vendor/autoload.php';`
+
+
+Now you can use in your code with your vendor's integrator key
+
+```PHP
+<?php
+
+    $stellitepay = new \Stellite\StellitePay();
+
+    $stellitepay->setIntegratorKey($your_integrator_key);
+
+?>
+```
+
+To view more example checkout (example.php)[exmple.php]
+
 
 ## Structure
 
