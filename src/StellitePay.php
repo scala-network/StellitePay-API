@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+namespace Stellite;
 /**
  * Reference implementation for StellitePay's REST API.
  *
@@ -36,7 +35,9 @@ class StellitePay
             CURLOPT_RETURNTRANSFER => true)
         );
     }
-
+    public function setIntegratorKey($key){
+        $this->key = $key;
+    }
     function __destruct()
     {
         curl_close($this->curl);
@@ -81,6 +82,7 @@ class StellitePay
         )));
             
         $r = json_decode(curl_exec($this->curl));
+        var_dump($r);
         if(isset($r->message->access_token)) $this->access_token = $r->message->access_token;
         return $r;
     }
