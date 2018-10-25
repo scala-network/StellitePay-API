@@ -25,7 +25,7 @@ Now you can use in your code with your vendor's integrator key
 ?>
 ```
 
-To view more example checkout (example.php)[exmple.php]
+To view more example checkout [example.php](example.php)
 
 
 ## Structure
