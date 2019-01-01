@@ -1,5 +1,6 @@
 <?php
 namespace Stellite;
+
 /**
  * Reference implementation for StellitePay's REST API.
  *
@@ -99,7 +100,7 @@ class StellitePay
      *
      * @return array created user
     */
-    public function register($name, $email, $password, $beta, $ref='')
+    public function register($name, $email, $password, $beta, $ref = '')
     {
         curl_setopt_array($this->curl, [
             CURLOPT_URL => $this->url . $this->version . "/register",
@@ -431,7 +432,8 @@ class StellitePay
             CURLOPT_POSTFIELDS => json_encode(["timestamp" => (string) $timestamp]),
         ]);
 
-        return json_decode(curl_exec($this->curl));;
+        return json_decode(curl_exec($this->curl));
+        ;
     }
 
     /**
@@ -439,7 +441,7 @@ class StellitePay
     */
     private function lofi()
     {
-        if($this->access_token == '') {
+        if ($this->access_token == '') {
             $o = new \stdClass;
             $o->success = false;
             $o->message = "login first";
